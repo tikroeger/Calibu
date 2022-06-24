@@ -194,29 +194,3 @@ endif()
 add_library( calibu ${SOURCES} )
 target_link_libraries( calibu ${LINK_LIBS} )
 
-# install everything
-install_package(
-    PKG_NAME Calibu
-    LIB_NAME calibu
-    VERSION 0.2
-    DESCRIPTION "Computer vision camera model library."
-#    INSTALL_HEADERS ${HEADERS}
-    INSTALL_INCLUDE_DIR true
-    INSTALL_GENERATED_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/include/calibu/config.h
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
-    INCLUDE_DIRS ${USER_INC}
-    LINK_LIBS ${LINK_LIBS}
-    )
-
-if( BUILD_APPLICATIONS )
-  set( Calibu_DIR ${CMAKE_CURRENT_BINARY_DIR} ) # so subdirs can call find_package( Calibu )
-  add_subdirectory( applications )
-endif()
-
-###########################
- include(${CMAKE_MODULE_PATH}/cmake_uninstall.cmake.in)
-
- add_custom_target(uninstall
-     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
- ###########################
-
